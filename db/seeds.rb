@@ -13,3 +13,20 @@ User.create(
   role: 'admin'
   )
 puts 'Default admin user created' 
+
+Category.destroy_all
+
+category_list = [
+  { name: "商業 " },
+  { name: "流行" },
+  { name: "心理" },
+  { name: "科技" },
+  { name: "文學" },
+  { name: "娛樂" },
+  { name: "體育" }
+]
+
+category_list.each do |category|
+  Category.create( name: category[:name] )
+end
+puts "Category created!"
