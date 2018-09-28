@@ -11,19 +11,25 @@
         <thead>
           <tr class="active">
             <th>Name</th>
-            <th></th>
+            <th>Email</th>
+            <th>Role</th>
           </tr>
         </thead>
         <tbody>
-          <% @categories.each do |category| %>
-          <tr class="success">
-            <th scope="row"><%= category.name %></th>
-            <td><%= link_to 'Edit', admin_categories_path(id: category.id) %>
-                <%= link_to 'Delete', admin_category_path(category), method: :delete, data: { confirm: "Are you sure?"} %></td>
+          <% @users.each do |user| %>
+          <tr class="danger">
+            <th scope="row"><%= user.name %></th>
+            <td><%= user.email %></td>
+            <td>
+              <%= form_tag admin_user_path(user), :method => :patch do %>
+                <%= select_tag :role, options_for_select([["Admin",'admin'],["Normal",'normal']],user.role) %>
+                <%= submit_tag 'Update' %>
+              <% end %>
+            </td>
           </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   </div>
-</div>
+</div> 
