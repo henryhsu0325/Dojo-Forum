@@ -8,6 +8,20 @@
       <br>
 
       <table class="table table-hover table-bordered">
+        <div class="form-inline" >
+          <%= form_for [:admin, @category] do |f| %>
+          <div class="form-group">
+            <%= f.text_field :name, placeholder: "Category Name",  class: "form-control" %>
+          </div>
+          <%= f.submit class: "btn btn-primary" %>
+          <!-- errors message -->
+          <% if @category.errors.any? %>
+            <%= @category.errors.full_messages.to_sentence %>
+          <% end %>
+          <% end %>
+        </div>
+        <br>
+
         <thead>
           <tr class="active">
             <th>Name</th>
