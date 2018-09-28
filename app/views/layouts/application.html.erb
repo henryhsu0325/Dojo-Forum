@@ -11,8 +11,12 @@
   <body>
     <nav class="navbar " style="background-color: #dbeda9;">
       <ul class="pull-right text-right nav navbar-nav">
+        <%= link_to "首頁", root_path, class: "navbar-brand" %>
         <% if current_user %>
         Hi, <%= current_user.email %>
+        <% if current_user.admin? %>
+          <li><%= link_to 'Admin後台', admin_users_path %></li>
+        <% end %>
         <%= link_to('Log out', destroy_user_session_path, method: :delete) %> |
         <%= link_to('修改密碼', edit_user_registration_path) %>
         <% else %>
