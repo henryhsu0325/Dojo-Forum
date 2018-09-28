@@ -8,4 +8,8 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
   end
+
+  def feed
+  end
+  
 end

@@ -13,6 +13,8 @@
       <div class="container-fluid">
         <%= link_to "首頁", root_path, class: "navbar-brand" %>
         <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><%= link_to('Feed', feeds_posts_path, class: "nav-link") %> </li>
+          <br>
           <li class="nav-item"><%= link_to('All Post', root_path, class: "nav-link") %></li>
           <br>
           <li class="nav-item"><%= link_to('New Post', new_post_path, class: "nav-link") %></li>
