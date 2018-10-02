@@ -17,6 +17,21 @@
           <%= f.file_field :image %>
         </div>
 
+         Who Can See：
+        <div class="check-inline">
+          <%= f.radio_button :permit, "all", :checked => true, class: "input" %>
+          <label class="check-label">All</label>
+        </div>
+        <div class="check-inline">
+          <%= f.radio_button :permit, "friend", class: "input" %>
+          <label class="check-label">Friend</label>
+        </div>
+        <div class="check-inlinee">
+          <%= f.radio_button :permit, "myself", class: "input"  %>
+          <label class="check-label">Myself</label>
+        </div> 
+        <br/>
+
         <div class="form-group">
           <%= f.submit "Save Draft" %>
           <%= f.submit "Submit" %>
