@@ -9,6 +9,8 @@ class Post < ApplicationRecord
 
   has_many :replies, dependent: :destroy
 
+  has_many :vieweds, dependent: :destroy
+
   def self.all_publish
     where( :status => 'publish', :permit => 'all').all
   end
