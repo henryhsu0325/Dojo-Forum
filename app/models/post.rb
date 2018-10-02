@@ -7,6 +7,8 @@ class Post < ApplicationRecord
 
   has_many :categories
 
+  has_many :replies, dependent: :destroy
+
   def self.all_publish
     where( :status => 'publish', :permit => 'all').all
   end

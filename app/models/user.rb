@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
+  has_many :replies, dependent: :restrict_with_error
+  has_many :replied_posts, through: :replies, source: :post
+
   def admin?
     self.role == "admin"
   end
