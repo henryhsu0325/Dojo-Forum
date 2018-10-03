@@ -32,6 +32,18 @@
         </div> 
         <br/>
 
+        Category：
+        <% @categories.each do |category| %>
+          <%= fields_for category do |f| %>
+          <div class="check-inline">
+            <%= f.check_box :category_of_post_ids %>
+            <label class="check-label"><%= category.name %></label>
+          </div>
+          <% end %>
+        <% end %>
+        <br/> 
+
+        Status：
         <div class="form-group">
           <%= f.submit "Save Draft" %>
           <%= f.submit "Submit" %>
