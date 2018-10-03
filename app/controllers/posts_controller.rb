@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: :index  
 
   def index
-    @posts = Post.all_publish.page(params[:page]).per(10)
+    @posts = Post.all_publish.page(params[:page]).per(20)
+    @categories = Category.all
   end
 
   def new
