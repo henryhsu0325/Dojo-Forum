@@ -7,6 +7,9 @@ class Post < ApplicationRecord
 
   has_many :categories
 
+  has_many :category_of_posts, dependent: :destroy
+  has_many :categories, through: :category_of_posts
+
   has_many :replies, dependent: :destroy
 
   has_many :vieweds, dependent: :destroy
