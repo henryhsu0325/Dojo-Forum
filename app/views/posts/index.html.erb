@@ -1,11 +1,5 @@
-<div class="post-index">
-  <div class="col-md-12">
     <h1>Dojo Forum</h1>
-  </div>       
-</div>
 
-<div class="container">
-  <div class="row">
     <table class="table table-hover">
       <thead>
         <tr>
@@ -20,11 +14,14 @@
         <tr>
           <th scope="row"><%= post.replies_count %></th>
           <td><%= post.title %></td>
-          <td><%= post.replies.last.created_at %></td>
-          <td<%= post.viewed_count %></td>
+          <td>
+            <% if post.replies.present? %>
+            <%= post.replies.last.created_at %>
+            <% end %>
+          </td>
+          <td><%= post.viewed_count %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
-  </div>
-</div>
+    <%= paginate @posts %>
