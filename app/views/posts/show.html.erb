@@ -1,0 +1,18 @@
+<div class="post-head">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1><%= @post.title %></h1>
+      </div>
+      <%= image_tag @post.image, class: "post-image img-thumbnail" %>
+      <p><%= @post.description %></p>
+      <div class="clearfix">
+        <div class="col-md-6">
+          <div class="col-3<%= @post.user.id %>_info">
+            <%= render partial: "shared/user_info", locals: {user: @post.user} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
