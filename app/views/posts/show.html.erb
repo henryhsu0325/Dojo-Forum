@@ -6,6 +6,9 @@
       </div>
       <%= image_tag @post.image, class: "post-image img-thumbnail" %>
       <p><%= @post.description %></p>
+        <%= link_to 'edit', edit_post_path(@post),remote: true , class: "btn btn-primary" if @post.user == current_user %>
+        
+        <%= link_to 'delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" if @post.user == current_user || current_user.admin? %>
       <div class="clearfix">
         <div class="col-md-6">
           <div class="col-3<%= @post.user.id %>_info">
