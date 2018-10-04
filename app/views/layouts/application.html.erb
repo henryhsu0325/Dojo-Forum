@@ -25,6 +25,7 @@
         <% if current_user.admin? %>
           <li><%= link_to 'Admin後台', admin_users_path %></li>
         <% end %>
+          <li><%= link_to 'Profile', user_path(current_user) %></li>
         <%= link_to('Log out', destroy_user_session_path, method: :delete) %> |
         <%= link_to('修改密碼', edit_user_registration_path) %>
         <% else %>
