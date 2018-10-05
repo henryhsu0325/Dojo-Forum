@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
+    resources :replies, only: [:create, :destroy, :edit, :update]
     collection do
       get :feeds
     end
