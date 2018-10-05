@@ -13,6 +13,9 @@ class User < ApplicationRecord
   has_many :vieweds, dependent: :restrict_with_error
   has_many :viewed_posts, through: :vieweds, source: :post
 
+  has_many :collects, dependent: :destroy
+  has_many :collected_posts, through: :collects, source: :post
+
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
