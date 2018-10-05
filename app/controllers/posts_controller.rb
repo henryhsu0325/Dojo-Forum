@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :collect, :uncollect]
   
   def index
-    @posts = Post.all_publish.page(params[:page]).per(20)
+    @posts = Post.all_publish.includes(:replies).order(sort_by).page(params[:page]).per(20)
     @categories = Category.all
   end
 
