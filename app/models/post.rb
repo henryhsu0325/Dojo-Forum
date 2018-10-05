@@ -18,6 +18,10 @@ class Post < ApplicationRecord
     where( :status => 'publish', :permit => 'all').all
   end
 
+  def self.publishs
+    where( :status => 'publish').all
+  end 
+
   def self.drafts
     where( :status => 'draft').all
   end

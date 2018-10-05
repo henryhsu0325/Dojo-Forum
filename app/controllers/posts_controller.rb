@@ -13,6 +13,12 @@ class PostsController < ApplicationController
     @category = @post.categories.ids
   end
 
+  def show
+    @user = @post.user
+    @reply = Reply.new
+    @replies = @post.replies.page(params[:page]).per(20)
+  end
+
   def create
     @post = Post.new(post_params)
     @post.user = current_user
