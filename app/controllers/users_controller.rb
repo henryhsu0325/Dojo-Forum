@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :posts, :drafts]
-
+before_action :set_user
   def show
     @posts = @user.posts.publishs
   end 
@@ -18,6 +17,14 @@ class UsersController < ApplicationController
 
   def posts
     @posts = @user.posts.publishs
+  end
+
+  def replies
+    @replies = @user.replies
+  end
+
+  def collects
+    @collects = @user.collects
   end
 
   def drafts

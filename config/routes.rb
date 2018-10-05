@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     # profile/ user page
     member do
       get :posts
-      get :comments
+      get :replies
       get :collects
       get :drafts
       get :friends
@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     resources :replies, only: [:create, :destroy, :edit, :update]
     collection do
       get :feeds
+    end
+    member do
+      post :collect
+      post :uncollect
     end
   end
 
