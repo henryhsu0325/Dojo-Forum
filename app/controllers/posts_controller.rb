@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :collect, :uncollect]
+  
   def index
     @posts = Post.all_publish.page(params[:page]).per(20)
     @categories = Category.all
@@ -82,8 +82,29 @@ class PostsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+
+   def collect
+    collect = Collect.create(user: current_user, post: @post)
+    if collect.save
+      flash[:notice] = "Successfully collected"
+    else
+      flash[:alert] = collect.errors.full_messages.to_sentence if collect.errors.any?
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def uncollect
+    collect = @post.collects.find_by(user: current_user)
+    if collect.destroy
+      flash[:notice] = "Successfully Uncollect"
+    else
+      flash[:alert] = "Error"
+      redirect_back(fallback_location: root_path)
+    end
+  end
  
   private
+
 
   def set_post
     @post = Post.find(params[:id])

@@ -29,8 +29,8 @@ class Post < ApplicationRecord
     where( :status => 'draft').all
   end
 
-  def collected?(user)
-    self.collects.find_by(user: user)
+  def collected? (user)
+    self.collected_users.include?(user)
   end
 
 end
