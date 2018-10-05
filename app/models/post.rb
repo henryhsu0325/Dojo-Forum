@@ -17,5 +17,9 @@ class Post < ApplicationRecord
   def self.all_publish
     where( :status => 'publish', :permit => 'all').all
   end
-  
+
+  def self.drafts
+    where( :status => 'draft').all
+  end
+
 end

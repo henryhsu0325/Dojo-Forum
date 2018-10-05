@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :drafts]
 
   def edit 
     unless @user == current_user
@@ -10,6 +10,13 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     redirect_to user_path(@user)
+  end
+
+  def drafts
+    @drafts = @user.posts.drafts
+    unless @user == current_user
+      redirect_to user_path(@user)
+    end
   end
 
   private
