@@ -1,7 +1,7 @@
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_friend, :only [:ignore, :connect]
-
+  before_action :find_friend, only: [:ignore, :connect]
+  
   def create
     @friendship = current_user.friendships.build(friend_id: params[:friend_id], status: 'send')
     if @friendship.save
