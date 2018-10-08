@@ -17,6 +17,7 @@ class PostsController < ApplicationController
     @user = @post.user
     @reply = Reply.new
     @replies = @post.replies.page(params[:page]).per(20)
+    add_view
   end
 
   def create
@@ -104,6 +105,10 @@ class PostsController < ApplicationController
   end
  
   private
+
+  def add_view 
+    Viewed.create(post: @post, user: current_user)
+  end
 
 
   def set_post
