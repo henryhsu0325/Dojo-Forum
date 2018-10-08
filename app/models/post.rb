@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   mount_uploader :image, PhotoUploader
+  
+  # validates_presence_of :title, :description
   validates_inclusion_of :permit, :in => ["all", "friend", "myself"]
   validates_inclusion_of :status, :in => ["publish", "draft"]
 
