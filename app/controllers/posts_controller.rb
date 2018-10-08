@@ -74,13 +74,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if @post.user == current_user || current_user.admin?
+    if @post.status == 'draft'
       @post.destroy
-      flash[:notice] = "Successfully deleted"
-      redirect_to posts_path
-    else
-      flash[:alert] = '沒有權限'
-      redirect_back(fallback_location: root_path)
+      redirect_to drafts_user_path(current_user)
+      flash[:alert] = "draft was deleted"  
+    else   
+      @post.destroy
+      redirect_to user_path(current_user)
+      flash[:alert] = "post was deleted"
     end
   end
 
