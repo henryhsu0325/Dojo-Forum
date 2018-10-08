@@ -24,7 +24,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :friendships, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy] do
+    member do
+      patch :ignore
+      patch :connect
+    end
+  end
 
   resources :categories, only: :show
   root "posts#index" 

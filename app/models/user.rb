@@ -19,12 +19,29 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
+  has_many :connect_friendships, -> {where status: 'connect'}, class_name: "Friendship", dependent: :destroy
+  has_many :connect_friends, through: :connect_friendships, source: :friend
+
+  has_many :beconnect_friendships, -> {where status: 'connect'}, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :beconnect_friends, through: :beconnect_friendships, source: :user
+
+  has_many :wait_friendships, -> {where status: 'send'}, class_name: "Friendship", dependent: :destroy
+  has_many :wait_friends, through: :wait_friendships, source: :friend
+  
+  has_many :unconfirm_friendships, -> {where status: 'send'}, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :unconfirm_friends, through: :unconfirm_friendships, source: :user
+
   def admin?
     self.role == "admin"
   end
   
-  def friend?(user)
+  def friend?(user) # <% if current_user.friend?(user) %>
     self.friends.include?(user)
+  end
+
+  def all_friends
+    self.beconnect_friends.all.uniq ||
+    self.connect_friends.all.uniq
   end
 
 end
