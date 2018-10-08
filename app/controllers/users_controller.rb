@@ -34,6 +34,12 @@ before_action :set_user
     end
   end
 
+  def friends
+    @friends = @user.all_friends
+    @wait_friends = @user.wait_friends
+    @unconfirm_friends = @user.unconfirm_friends
+  end
+
   private
 
   def set_user

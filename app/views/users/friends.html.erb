@@ -1,0 +1,52 @@
+<%= render partial: "shared/user" %>
+<% if @user == current_user %>
+ <div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="text-center">Waiting for response</h4>
+    </div>
+    <% @wait_friends.each do |friend| %>
+    <div class="col">
+      <%= link_to user_path(friend) do %>
+        <%= image_tag friend.avatar, class: "friend-avatar img-thumbnail" if friend.avatar? %>
+        <h5><%= friend.name %></h5>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<hr/>
+
+ <div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="text-center">Unconfirm the friend request</h4>
+    </div>
+    <% @unconfirm_friends.each do |friend| %>
+    <div class="col">
+      <%= link_to user_path(friend) do %>
+        <%= image_tag friend.avatar, class: "friend-avatar img-thumbnail" if friend.avatar? %>
+        <h5><%= friend.name %></h5>
+      <% end %>
+      <%= render partial: "shared/accept_friend", locals: {user: friend} %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<hr/>
+<% end %>
+ <div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="text-center">My Friends List</h4>
+    </div>
+    <% @friends.each do |friend| %>
+    <div class="col">
+      <%= link_to user_path(friend) do %>
+        <%= image_tag friend.avatar, class: "friend-avatar img-thumbnail" if friend.avatar? %>
+        <h5><%= friend.name %></h5>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
