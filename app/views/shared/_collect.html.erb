@@ -1,5 +1,5 @@
 <% if @post.collected?(current_user) %>
-  <%= button_to 'Uncollect', uncollect_post_path(@post), remote: true, class: "btn btn-warning ml-3" %>
+  <%= link_to 'Uncollect', uncollect_post_path(@post), method: :post, class: "btn btn-warning btn-sm collect-btn float-right", remote: true %>
 <% else %>
-  <%= button_to 'Collect', collect_post_path(@post), remote: true, class: "btn btn-primary ml-3" %>
+  <%= link_to 'Collect', collect_post_path(@post), method: :post, class: "btn btn-primary btn-sm collect-btn float-right", remote: true %>
 <% end %>
