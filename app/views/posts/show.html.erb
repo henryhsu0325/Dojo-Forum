@@ -1,10 +1,14 @@
-<div class="post-index" >
-  <div class="col-md-12">
-    <h3><%= @post.title %></h3>
-    <div id="collect-<%= @post.id %>" class="float-right collect-show-btn"> 
-    <%= render partial: "shared/collect", :locals => { :post => @post } %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3><%= @post.title %></h3>
+      <div id="collect-<%= @post.id %>" class="float-right collect-btn"> 
+        <%= render partial: "shared/collect", :locals => { :post => @post } %>
+      </div>
+    </div>
   </div>
 </div>
+
 <div class="container">
   <div class="row">
     <div class="col-6 col-md-3">
@@ -45,8 +49,8 @@
       </div>  
     </div>
     <div id="<%= reply.id %>" class="col-12 col-sm-6 col-md-9">
-      <div class="card reply-card">
-        <div class="card-body">
+      <div class="reply-form">
+        <div class="body">
           <%= simple_format reply.comment %>
           <% if reply.user == current_user %>
           <%= link_to "Delete", post_reply_path(@post, reply), class: "btn float-right", method: :delete, data: { confirm: "Are you sure?"} %>
