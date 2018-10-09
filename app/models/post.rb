@@ -19,8 +19,8 @@ class Post < ApplicationRecord
   has_many :collects, dependent: :destroy
   has_many :collected_users, through: :collects, source: :user
 
-  def self.all_publish
-    where( :status => 'publish', :permit => 'all').all
+  def self.all_publish(user)
+    where( :status => 'publish', :permit => 'all')
   end
 
   def self.publishs
