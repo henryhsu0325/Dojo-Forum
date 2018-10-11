@@ -1,14 +1,14 @@
-class Api::V1::PostsController < ApplicationController
-  
+class Api::V1::PostsController < ApiController
+
   # GET http://localhost:3000/api/v1/posts
   def index
-    @posts = Post.all_publish(current_user)
-      render json: {
-        data: @posts
-      }
+    @posts = Post.all
+    render json: {
+      data: @posts
+    }
   end
-
-  # GET http://localhost:3000/api/v1/posts/:id
+  
+   # GET http://localhost:3000/api/v1/posts/:id
   def show
     @post = Post.find_by(id: params[:id])
     if !@post
@@ -18,17 +18,19 @@ class Api::V1::PostsController < ApplicationController
       }
     else
       render json: {
-        data: @post
-      }
+      title: @post.title,
+      description: @post.description
+    }
     end
   end
-
+  
+   # POST http://localhost:3000/api/v1/posts/
   def create
     @post = Post.new(post_params)
-    @post.user = current_user
+
     if @post.save
       render json: {
-        message: "Post created successfully!",
+        message: "Post was created successfully!",
         result: @post
       }
     else
@@ -38,10 +40,26 @@ class Api::V1::PostsController < ApplicationController
     end
   end
 
+  # PATCH http://localhost:3000/api/v1/posts/:id
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      render json: {
+        message: "Post was updated successfully!",
+        result: @post
+      }
+    else
+      render json: {
+        errors: @post.errors
+      }
+    end
+  end
+  
   private
 
   def post_params
     params.permit(:title, :description, :permit, :image, :status)
   end
-
+  
 end
