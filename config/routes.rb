@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
+  root "posts#index" 
   resources :posts do
     resources :replies, only: [:create, :destroy, :edit, :update]
     collection do
@@ -32,7 +33,6 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: :show
-  root "posts#index" 
 
   namespace :admin do
     resources :categories
