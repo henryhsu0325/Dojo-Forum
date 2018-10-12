@@ -55,11 +55,21 @@ class Api::V1::PostsController < ApiController
       }
     end
   end
+
+  # DELETE http://localhost:3000/api/v1/posts/:id
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+
+    render json: {
+      message: "Post destroy seccessfully!"
+    }
+  end
   
   private
 
   def post_params
     params.permit(:title, :description, :permit, :image, :status)
   end
-  
+
 end
