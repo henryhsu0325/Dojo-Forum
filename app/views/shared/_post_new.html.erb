@@ -10,6 +10,7 @@
         <%= image_tag @post.image, width: '300px' if @post.image? %>
         <%= f.file_field :image %>
       </div>
+
       Who Can See：
       <div class="form-check form-check-inline">
         <%= f.radio_button :permit, "all", :checked => true, class: "form-check-input" %>
@@ -24,6 +25,7 @@
         <label class="form-check-label">Myself</label>
       </div> 
       <br/>
+
       Category：
       <% @categories.each do |category| %>
         <%= fields_for 'categories[]', category do |f| %>
@@ -34,9 +36,6 @@
         <% end %>
       <% end %>
       <br/> 
-      Status：   
-      <div class="form-group">
-        <%= f.submit "Save Draft" %>
-        <%= f.submit "Submit" %>
-      </div>
+     <%= f.submit "Save Draft", class: "btn btn-info" %>
+      <%= f.submit "Submit", class: "btn btn-primary" %>
     <% end %>
