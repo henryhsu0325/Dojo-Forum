@@ -4,6 +4,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  before_create :generate_authentication_token       
 
   has_many :posts, dependent: :destroy
 
@@ -45,6 +46,11 @@ class User < ApplicationRecord
 
   def all_friends
     self.connect_friends.all.uniq
+  end
+
+  def generate_authentication_token
+    # Devise.friendly_token 會自動產生 20 字元長的亂數
+    self.authentication_token = Devise.friendly_token
   end
 
 end
