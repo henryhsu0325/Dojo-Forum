@@ -12,12 +12,16 @@
     <nav class="navbar " style="background-color: #dbeda9;">
       <div class="container-fluid">
         <%= link_to "首頁", root_path, class: "navbar-brand" %>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><%= link_to('Feed', feeds_posts_path, class: "nav-link") %> </li>
-          <br>
-          <li class="nav-item"><%= link_to('All Post', root_path, class: "nav-link") %></li>
-          <br>
-          <li class="nav-item"><%= link_to('New Post', new_post_path, class: "nav-link") %></li>
+        <ul class="pull-left nav navbar-nav">
+          <li>
+            <p class="navbar-text"><%= link_to "Feeds", feeds_posts_path %></p>
+          </li>
+          <li>
+            <p class="navbar-text"><%= link_to "All Post", root_path %></p>
+          </li>
+          <li>
+            <p class="navbar-text"><%= link_to "New Post", new_post_path %></p>
+          </li>
         </ul>
         <ul class="pull-right text-right nav navbar-nav">
         <% if current_user %>

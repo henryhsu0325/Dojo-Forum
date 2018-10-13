@@ -1,32 +1,28 @@
-<div class="post-index" >
-  <div class="col-md-12">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <h3 class="text-center">User</h3>
-          <div class="text-center">
-            <h4><%= @users_count %></h4>
-          </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="info"  style="text-align: center;">
+        <div class="col-md-4" >
+          <h3>User</h3>
+          <h4><%= @users_count %></h4>
         </div>
-      </div>  
-      <div class="col-sm">
-        <h3 class="text-center">Post</h3>
-        <div class="text-center">
-          <h4><%= @post_count %></h4> 
+        <div class="col-md-4">
+          <h3>Post</h3>
+          <h4><%= @post_count %></h4>
         </div>
-      </div> 
-    </div>
-    <div class="col-sm">
-      <h3 class="text-center">Comment</h3>
-      <div class="text-center">
-        <h4><%= @replies_count %></h4> 
+        <div class="col-md-4">
+          <h3>Comment</h3>
+          <h4><%= @replies_count %></h4> 
+        </div>
       </div>
     </div>
   </div>
 </div>
+<br/>
+
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-5">
+    <div class="col-6">
       <table class="table table-hover">
         <thead>
           <tr>
@@ -44,23 +40,27 @@
         </tbody>
       </table>
     </div>
-    <div class="col-5">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <h2 class="text-center">Most Popular Post</h2>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <% @popular_posts.each_with_index do |post,index| %>
-            <th scope="row"><%= index +1 %></th>
-            <td><%= post.title %></td>
-            <td><%= post.created_at.to_date %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
   </div>
-</div> 
+</div>
+<hr/>
+
+<div class="container">
+  <div class="col-6">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <h2 class="text-center">Most Popular Post</h2>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% @popular_posts.each_with_index do |post,index| %>
+          <th scope="row"><%= index +1 %></th>
+          <td><%= post.title %></td>
+          <td><%= post.created_at.to_date %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
