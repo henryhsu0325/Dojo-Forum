@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'carrierwave'
 gem 'kaminari'
 gem 'simple_form'
+gem 'rest-client'
+gem 'ffaker'
 
 group :production do
   gem 'pg', '~> 0.11'
