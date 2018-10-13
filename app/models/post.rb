@@ -17,7 +17,7 @@ class Post < ApplicationRecord
   has_many :collects, dependent: :destroy
   has_many :collected_users, through: :collects, source: :user
 
-  def self.all_publish(user)
+  def self.all_publish(user)  # 原本版本有衝突
     where( :status => 'publish', :permit => 'all')
   end
 

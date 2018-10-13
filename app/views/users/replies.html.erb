@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <% @replies.each do |reply| %>
-    <div class="col-12 col-sm-6 col-md-9">
+    <div class="col-12">
       <h4><%= reply.post.title %></h4>
       <div id="<%= reply.id %>">
         <div class="reply-form">
