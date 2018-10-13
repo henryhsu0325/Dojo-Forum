@@ -5,7 +5,9 @@
       <tr>
         <th class="text-center"><%= collect.post.title %></th>
         <td>
-          <div id="collect-<%= collect.post.id %>"></div>
+          <div id="collect-<%= collect.post.id %>">
+            <%= render partial: "shared/collect", :locals => { :@post => collect.post } %>
+          </div>
         </td>
       </tr>
     <% end %>
