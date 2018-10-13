@@ -1,5 +1,6 @@
 class Api::V1::PostsController < ApiController
   before_action :authenticate_user!, except: :index
+  before_action :authenticate_permit_user, only: [:show]
 
   # GET http://localhost:3000/api/v1/posts
   def index

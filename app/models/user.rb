@@ -40,7 +40,7 @@ class User < ApplicationRecord
     self.friends.include?(user)
   end
 
-  def beconnect_friends_ids
+  def beconnect_friends_ids(user) 
     self.beconnect_friends.ids
   end
 
